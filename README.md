@@ -15,4 +15,4 @@ My personal portfolio website showcasing my skills, projects, and experience.
 - jQuery
 
 ## Live Demo
-Visit my portfolio at: [https://github.com/ImaDeSara/my-portfolio-website/]
+Visit my portfolio at: [https://imashadesaram.vercel.app/] 
