@@ -862,13 +862,11 @@
       color: #fff;
       -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) !important;
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) !important; 
-
       width: 100%;
       padding: 15px 20px;
       margin-bottom: 15px;
       border-radius: 4px;
     }
-
      .btn {
         /* Button base styles */
         border-radius: 100px;
@@ -916,7 +914,6 @@
         color: #0c5460;
         border: 1px solid #bee5eb;
       }
-
 
       .form-control:active, .form-control:focus {
       /* Input focus background */
@@ -1047,8 +1044,7 @@
           width: 24px;
           height: 24px;
       }
-
-
+      
       .site-footer .social-item > span {
         /* Center icon in social item */
         position: absolute;
