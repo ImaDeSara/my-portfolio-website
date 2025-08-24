@@ -69,3 +69,65 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Mobile navigation handling
+document.addEventListener('DOMContentLoaded', function() {
+  // Close mobile menu when clicking a link
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 992) {
+        navbarCollapse.classList.remove('show');
+        navbarToggler.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  
+  // Smooth scrolling for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+});
+
+// Better touch handling for project cards on mobile
+document.addEventListener('DOMContentLoaded', function() {
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  projectCards.forEach(card => {
+    // Prevent accidental scrolling when interacting with project cards
+    card.addEventListener('touchstart', function(e) {
+      if (window.innerWidth < 768) {
+        this.style.overflowY = 'hidden';
+      }
+    });
+    
+    card.addEventListener('touchend', function() {
+      if (window.innerWidth < 768) {
+        this.style.overflowY = 'auto';
+      }
+    });
+  });
+  
+  // Improve touch for skill items
+  const skillItems = document.querySelectorAll('.skill-item');
+  skillItems.forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+      if (window.innerWidth < 768) {
+        this.classList.toggle('active');
+      }
+    });
+  });
+});

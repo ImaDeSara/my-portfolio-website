@@ -336,8 +336,8 @@
       top: 50%; 
     }
     .site-service-item h3 {
-    font-size: 20px;
-    font-weight: 200; 
+      font-size: 20px;
+      font-weight: 200; 
     }
 
   /* List styles */
@@ -510,18 +510,21 @@
         vertical-align: top;
         padding-top: 0;
         padding-bottom: 0;
-      }
-    /* Responsive adjustments for skills section */
-      @media (max-width: 767px) {
-        #section-skills .col-lg-8 {
-          max-width: 100%;
-          flex: 0 0 100%;
-        }
-        #skills-table th, #skills-table td {
-          font-size: 0.98rem;
-        }
+      } 
+      /* Skills table container */
+      #skills-table-container {
+        display: flex;
+        flex-wrap: nowrap; /* Prevent wrapping on mobile */
+        gap: 30px;
+        width: 100%;
       }
 
+      /* Each skills column */
+      .skills-column {
+        flex: 1;
+        min-width: 0; /* Prevent flex item overflow */
+      }
+      
     /* Resume section tab navigation */
     #section-resume .nav-tabs .nav-link {
           font-size: 0.95rem;
@@ -798,7 +801,6 @@
     }
     /* End of Projects section  */
 
-
     /* Blog Section  */
     .blog-entry {
       /* Card transition and shadow */
@@ -1044,7 +1046,7 @@
           width: 24px;
           height: 24px;
       }
-      
+
       .site-footer .social-item > span {
         /* Center icon in social item */
         position: absolute;
@@ -1101,3 +1103,358 @@
       color: rgba(255, 255, 255, 0.5) !important; 
     }
  /* End of Form section  */
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+/* Tablets (768px to 1024px) */
+@media (max-width: 1024px) {
+  /* Navigation adjustments */
+  .navbar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navbar-nav .nav-item {
+    margin: 5px;
+  }
+  /* Hero section adjustments */
+  .site-hero .row {
+    height: auto;
+    min-height: 600px;
+    padding: 60px 0;
+  }
+  .site-hero h1 {
+    font-size: 50px;
+  }
+  /* Projects grid adjustments */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .project-card {
+    height: 350px;
+  }
+  /* Skills table adjustments */
+  #skills-table {
+    display: block;
+    overflow-x: auto;
+  }
+  /* Timeline adjustments */
+  .timeline {
+    padding-left: 30px;
+  }
+  .timeline-dot {
+    left: -25px;
+  }
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  /* General adjustments */
+  body {
+    font-size: 14px;
+  }
+  .section-heading h2 {
+    font-size: 24px;
+  }
+  /* Navigation adjustments */
+  .navbar-brand {
+    font-size: 16px;
+  }
+  .navbar-nav .nav-link {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  /* Hero section adjustments */
+  .site-hero .row {
+    min-height: 500px;
+    padding: 40px 0;
+  }
+  .site-hero h1 {
+    font-size: 36px;
+  }
+  .site-hero img {
+    width: 120px;
+    height: 120px;
+  }
+  /* Projects grid adjustments */
+/* Projects grid - single column on mobile */
+  .projects-grid {
+    /* Change from 3 columns to 1 column */
+    grid-template-columns: 1fr !important;    
+    gap: 25px;
+    margin-top: 30px;
+  }
+  .project-card {
+    height: 350px;
+    margin-bottom: 15px;
+    cursor: pointer;   /* Improve touch targets */
+    transition: transform 0.3s ease;
+    min-height: 300px; /* Larger tap targets for mobile */
+  }
+  .project-card:active {
+    transform: scale(0.98);
+  }
+  /* Add some spacing between sections */
+  .site-section {
+    padding: 3em 0;
+  }
+  /* Better scrolling in project content */
+  .project-content::-webkit-scrollbar {
+    width: 4px;
+  }
+  .project-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+    /* Improve project title readability */
+  .project-title {
+    font-size: 1.1rem;
+    padding: 12px 10px;
+    line-height: 1.4;
+  }
+  .project-content {
+    padding: 15px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  .project-content h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  /* Slightly smaller font for project details on mobile */
+  .project-details p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .project-details p b {
+    font-size: 0.9rem;
+  }
+ /* Skills section adjustments */
+ #section-skills {
+    padding: 2em 0;
+  }
+   #skills-table-container {
+    flex-direction: row; /* Keep horizontal layout */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    gap: 15px;
+  }
+  .skills-column {
+    flex: 0 0 calc(50% - 10px); /* Each column takes half width minus gap */
+    min-width: 280px; /* Minimum width for readability */
+  }
+  /* Optional: Add visual indicator for scrollable content */
+  #skills-table-container::-webkit-scrollbar {
+    height: 5px;
+  }
+  #skills-table-container::-webkit-scrollbar-thumb {
+    background: rgba(186, 201, 100, 0.5);
+    border-radius: 10px;
+  }
+  /* Skills table adjustments for mobile*/
+  #skills-table {
+    display: block;
+    width: 100%;
+    overflow-x: visible;
+  }
+  #skills-table tr {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  #skills-table th {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 10px;
+    font-size: 1.1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 15px;
+  }
+  #skills-table th:first-child {
+    margin-top: 0;
+  }
+  #skills-table th:nth-child(2) {
+    margin-top: 25px;
+  }
+  /* Add visual separation between the two skill types */
+  #skills-table th:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #bac964, transparent);
+    margin: 8px 0 0;
+  }
+  #skills-table td {
+    display: block;
+    width: 100%;
+    padding: 0 5px;
+  }
+  /* Skill items */
+  .skill-item {
+    margin-bottom: 15px;
+    animation: fadeIn 0.5s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .skill-item.active {
+    transform: scale(1.02);
+    background: rgba(186, 201, 100, 0.1);
+    padding: 8px;
+    border-radius: 5px;
+  }
+.skill-item span {
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: 500;
+    color: #fff;
+  }
+  /* Progress bars */
+  .progress {
+    height: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    font-size: 10px;
+    line-height: 15px;
+    border-radius: 10px;
+  }
+  /* Timeline adjustments */
+  .timeline {
+    padding-left: 20px;
+    margin-left: 0;
+  }
+  .timeline::before {
+    left: 10px;
+  }
+  .timeline-dot {
+    left: -15px;
+    width: 16px;
+    height: 16px;
+  }
+  .timeline-content {
+    padding: 15px;
+  }
+  .timeline-title {
+    font-size: 1rem;
+  }
+  /* About section adjustments */
+  .site-section .row {
+    flex-direction: column;
+  }
+  .site-section .col-lg-7,
+  .site-section .col-lg-5 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }  
+  /* Blog adjustments */
+  .blog-entry {
+    height: auto;
+    margin-bottom: 30px;
+  }  
+  /* Contact form adjustments */
+  .site-form .form-group {
+    margin-bottom: 15px;
+  }
+  /* Footer adjustments */
+  .social-item {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+  }
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+      .site-hero h1 {
+        font-size: 28px;
+      }
+      .site-hero .lead {
+        font-size: 16px;
+      }
+      .btn {
+        padding: 8px 20px;
+        font-size: 11px;
+      }
+      .projects-grid {
+        gap: 20px;
+      }
+      .project-card {
+        height: 320px;
+      }
+      .project-title {
+        font-size: 1rem;
+        padding: 10px 8px;
+      }
+      .project-content {
+        padding: 12px;
+      }
+      .project-content h3 {
+        font-size: 0.95rem;
+      }
+      .project-details p {
+        font-size: 0.85rem;
+      }
+      .navbar-nav .nav-link {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      #section-skills .section-heading h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .skill-item span {
+        font-size: 0.9rem;
+      }
+      #skills-table th {
+        font-size: 1rem;
+        padding: 12px 0 8px;
+      }
+}
+
+/* Fix for mobile navigation toggle */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  .navbar-nav .nav-link {
+    color: #000 !important;
+    padding: 10px 15px;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for iframe/embedded content */
+iframe, embed, object {
+  max-width: 100%;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 767px) {
+  .btn, .nav-link, a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
