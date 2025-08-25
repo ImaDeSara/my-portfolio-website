@@ -147,3 +147,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// Animate project cards on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  // Only run on mobile devices
+  if (window.innerWidth > 768) {
+    // On desktop, make all cards visible immediately
+    projectCards.forEach(card => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+    return;
+  }
+  
+  // Set up Intersection Observer to detect when cards enter viewport
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2 // Trigger when 20% of card is visible
+  };
+  
+  const observer = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target); // Stop observing after animation
+      }
+    });
+  }, observerOptions);
+  
+  // Observe each project card
+  projectCards.forEach(card => {
+    observer.observe(card);
+  });
+  
+  // Also trigger on window resize in case of orientation change
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+      projectCards.forEach(card => {
+        if (!card.classList.contains('animate')) {
+          observer.observe(card);
+        }
+      });
+    } else {
+      // On desktop, make sure all cards are visible
+      projectCards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      });
+    }
+  });
+});
