@@ -131,3 +131,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Initialize SimpleParallax for parallax effect on images
+document.addEventListener('DOMContentLoaded', function() {
+  // Only apply parallax effect on non-mobile devices for better performance
+  if (window.innerWidth > 768) {
+    // Get the element to apply the parallax effect
+    const image = document.getElementById('section-home');
+    if (image) {
+      // Initialize simpleParallax with custom options
+      new simpleParallax(image, {
+        delay: 0.6, // Delay for the parallax animation
+        transition: 'cubic-bezier(0,0,0,1)' // Custom transition for smoothness
+      });
+    }
+  }
+});
