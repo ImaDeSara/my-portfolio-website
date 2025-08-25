@@ -200,3 +200,99 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+        // Add mobile-specific animations for contact form and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to check if we're on a mobile device
+            function isMobileDevice() {
+                return window.innerWidth <= 767;
+            }
+            
+            // Function to animate form elements
+            function animateFormElements() {
+                const formGroups = document.querySelectorAll('.site-form .form-group');
+                formGroups.forEach((group, index) => {
+                    setTimeout(() => {
+                        group.classList.add('animate');
+                    }, 300 + (index * 100));
+                });
+                
+                // Add touch feedback for form inputs
+                const formInputs = document.querySelectorAll('.form-control');
+                formInputs.forEach(input => {
+                    input.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(1.02)';
+                    });
+                    
+                    input.addEventListener('touchend', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                });
+            }
+            
+            // Function to animate footer elements
+            function animateFooterElements() {
+                const socialItems = document.querySelectorAll('.site-footer .social-item');
+                socialItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('animate');
+                    }, 500 + (index * 100));
+                });
+            }
+            
+            // Set up Intersection Observer to detect when elements enter viewport
+            if (isMobileDevice()) {
+                const contactSection = document.getElementById('section-contact');
+                const footerSection = document.querySelector('.site-footer');
+                
+                // Create observer with a simple threshold
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (entry.target.id === 'section-contact') {
+                                animateFormElements();
+                            } else if (entry.target.classList.contains('site-footer')) {
+                                animateFooterElements();
+                            }
+                            // Stop observing after animation is triggered
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 }); // Trigger when 20% of element is visible
+                
+                // Start observing if elements exist
+                if (contactSection) observer.observe(contactSection);
+                if (footerSection) observer.observe(footerSection);
+                
+                // Also trigger animations immediately if elements are already in view
+                const contactRect = contactSection ? contactSection.getBoundingClientRect() : null;
+                const footerRect = footerSection ? footerSection.getBoundingClientRect() : null;
+                
+                if (contactRect && contactRect.top < window.innerHeight && contactRect.bottom > 0) {
+                    animateFormElements();
+                    if (contactSection) observer.unobserve(contactSection);
+                }
+                
+                if (footerRect && footerRect.top < window.innerHeight && footerRect.bottom > 0) {
+                    animateFooterElements();
+                    if (footerSection) observer.unobserve(footerSection);
+                }
+            }
+            
+            // Re-run animations if window is resized to mobile
+            window.addEventListener('resize', function() {
+                if (isMobileDevice()) {
+                    // Check if form elements haven't been animated yet
+                    const formGroups = document.querySelectorAll('.site-form .form-group');
+                    const socialItems = document.querySelectorAll('.site-footer .social-item');
+                    
+                    if (formGroups.length > 0 && !formGroups[0].classList.contains('animate')) {
+                        animateFormElements();
+                    }
+                    
+                    if (socialItems.length > 0 && !socialItems[0].classList.contains('animate')) {
+                        animateFooterElements();
+                    }
+                }
+            });
+        });
